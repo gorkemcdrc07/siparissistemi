@@ -17,8 +17,8 @@ const Login = () => {
 
       const data = await response.json();
 
-      if (data.success) {
-        alert(`✅ Giriş Başarılı! Hoş geldin ${data.user.AdSoyad}`);
+if (data.message === "Success" && data.user) {
+alert(`✅ Giriş Başarılı! Hoş geldin ${data.user.fullName}`);
         console.log("Kullanıcı Bilgisi:", data.user);
         // localStorage.setItem("kullanici", JSON.stringify(data.user));
         // navigate('/anasayfa'); // yönlendirme yapılabilir
