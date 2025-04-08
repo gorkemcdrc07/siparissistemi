@@ -1,9 +1,11 @@
 ﻿import React, { useState } from "react";
 import backgroundImage from "./images/ArkaPlan.png";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // yönlendirme için hook
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,11 +19,11 @@ const Login = () => {
 
       const data = await response.json();
 
-if (data.message === "Success" && data.user) {
-alert(`✅ Giriş Başarılı! Hoş geldin ${data.user.fullName}`);
+      if (data.message === "Success" && data.user) {
+        alert(`✅ Giriş Başarılı! Hoş geldin ${data.user.fullName}`);
         console.log("Kullanıcı Bilgisi:", data.user);
         // localStorage.setItem("kullanici", JSON.stringify(data.user));
-        // navigate('/anasayfa'); // yönlendirme yapılabilir
+        navigate("/anasayfa"); // başarılı giriş sonrası yönlendirme
       } else {
         alert("❌ Kullanıcı adı veya şifre hatalı");
       }
@@ -33,14 +35,13 @@ alert(`✅ Giriş Başarılı! Hoş geldin ${data.user.fullName}`);
 
   const containerStyle = {
     height: "100vh",
+    width: "100vw",
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    paddingLeft: "35vw",
-    paddingRight: "4vw",
   };
 
   const formStyle = {
@@ -49,15 +50,15 @@ alert(`✅ Giriş Başarılı! Hoş geldin ${data.user.fullName}`);
     WebkitBackdropFilter: "blur(10px)",
     padding: "3rem",
     borderRadius: "16px",
-    width: "550px",
-    height: "600px",
-    marginTop: "-200px",
+    width: "650px",
+    height: "700px",
     boxShadow: "0 8px 24px rgba(0, 0, 0, 0.3)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     gap: "1.5rem",
     border: "1px solid rgba(255, 255, 255, 0.4)",
+    transform: "translateX(280px)", // az sağa kaydır
   };
 
   const inputStyle = {
